@@ -3,14 +3,15 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const { name, style } = req.body || {};
+  const { name, style, colors } = req.body || {};
   const token = process.env.REPLICATE_API_TOKEN;
 
   if (!token) {
     return res.status(500).json({ error: 'مفتاح Replicate API غير معرف في Vercel' });
   }
 
-  const prompt = `Arabic ${style} event theme for ${name}, flowers, pastel colors, minimal, printable, white background, high resolution`;
+  const colorPrompt = colors ? `${colors} color palette` : 'soft pastel pink and beige colors';
+  const prompt = `A centered delicate party theme frame badge, ${style} style, featuring cute hot air balloon, floral elements, ${colorPrompt}, empty blank space in the absolute center for text, pure white background, high resolution, minimalist party decoration design, digital illustration`;
 
   try {
     const startRes = await fetch("https://api.replicate.com/v1/predictions", {
