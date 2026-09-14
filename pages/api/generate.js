@@ -10,7 +10,6 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'مفتاح Replicate API غير معرف في Vercel' });
   }
 
-  // ترجمة وتوجيه شكل الإطار للهندسة المعمارية للتصميم
   const shapeDescriptions = {
     circle: 'delicate circular frame badge in center',
     arch: 'royal wedding arch frame structure with floral arrangements',
@@ -18,7 +17,6 @@ export default async function handler(req, res) {
     hexagon: 'modern geometric hexagon center badge'
   };
 
-  // ترجمة وتوجيه العناصر الزخرفية والرموز
   const iconDescriptions = {
     none: '',
     cute_animals: 'featuring adorable teddy bear and baby animals illustrations',
@@ -30,10 +28,9 @@ export default async function handler(req, res) {
 
   const selectedShape = shapeDescriptions[shape] || shapeDescriptions.arch;
   const selectedIcon = iconDescriptions[icon] || '';
-  const selectedPalette = colors ? `${colors} color scheme` : 'royal blue, cream, and gold accent';
+  const selectedPalette = colors ? `${colors} palette` : 'royal blue, cream, and gold accent';
 
-  // بناء المحفز الذكي القوي جداً للنموذج
-  const prompt = `A centered, ultra-high-resolution branding theme template for ${category}. Structural frame: ${selectedShape}. Elements: ${selectedIcon}. Color Palette: ${selectedPalette}. Style: luxurious BİROYA brand design, soft studio lighting, clean completely empty blank blank center for text overlay, 8k render, digital art`;
+  const prompt = `A centered ultra-high-resolution branding theme template for ${category}. Structural frame: ${selectedShape}. Elements: ${selectedIcon}. Color Palette: ${selectedPalette}. Style: luxurious BİROYA brand design, soft studio lighting, clean completely empty blank blank center space for custom font overlay, 8k resolution`;
 
   try {
     const startRes = await fetch("https://api.replicate.com/v1/predictions", {
@@ -65,7 +62,7 @@ export default async function handler(req, res) {
     if (prediction.status === "succeeded") {
       res.status(200).json({ output: prediction.output });
     } else {
-      res.status(500).json({ error: 'فشل الذكاء الاصطناعي في معالجة طلبك' });
+      res.status(500).json({ error: 'فشل التوليد، يرجى إعادة المحاولة' });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
