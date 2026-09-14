@@ -1,70 +1,112 @@
+/**
+ * BİROYA Customizer Engine & Theme Generator
+ * File: generate.js
+ */
+
+const fs = require('fs');
+const path = require('path');
+
+// 25 Master Font Mapping Engine
+const AVAILABLE_FONTS = [
+  'Tajawal', 'Cairo', 'Amiri', 'Aref Ruqaa', 'Reem Kufi',
+  'Changa', 'Lemonada', 'Lalezar', 'El Messiri', 'Scheherazade New',
+  'Katibeh', 'Lateef', 'Mada', 'Noto Naskh Arabic', 'Zain',
+  'Rubik', 'Playfair Display', 'Montserrat', 'Cinzel', 'Great Vibes',
+  'Pacifico', 'Marcellus', 'Work Sans', 'Vibes', 'Nabla'
+];
+
+/**
+ * Main Generation Handler
+ * Processes incoming canvas elements, text customization, shapes, and positions.
+ */
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method Not Allowed' });
-  }
+  if (req.method === 'POST') {
+    try {
+      const { text, fontClass, fontSize, elements, themeMode, customDimensions } = req.body;
 
-  const { name, subtext, category, font, shape, icon, style, colors } = req.body || {};
-  const token = process.env.REPLICATE_API_TOKEN;
+      // Validate Font Selection
+      const selectedFont = fontClass || 'f-1';
 
-  if (!token) {
-    return res.status(500).json({ error: 'مفتاح Replicate API غير معرف في Vercel' });
-  }
-
-  const shapeDescriptions = {
-    circle: 'delicate circular frame badge in center',
-    arch: 'royal wedding arch frame structure with floral arrangements',
-    square: 'minimalist boho square frame',
-    hexagon: 'modern geometric hexagon center badge'
-  };
-
-  const iconDescriptions = {
-    none: '',
-    cute_animals: 'featuring adorable teddy bear and baby animals illustrations',
-    vintage_car: 'featuring a classic vintage toy car illustration',
-    luxury_ornament: 'embellished with elegant royal Islamic / Arabic golden filigree ornaments',
-    golden_rings: 'featuring delicate golden wedding rings illustration',
-    coffee_cup: 'featuring a luxury coffee cup branding element'
-  };
-
-  const selectedShape = shapeDescriptions[shape] || shapeDescriptions.arch;
-  const selectedIcon = iconDescriptions[icon] || '';
-  const selectedPalette = colors ? `${colors} palette` : 'royal blue, cream, and gold accent';
-
-  const prompt = `A centered ultra-high-resolution branding theme template for ${category}. Structural frame: ${selectedShape}. Elements: ${selectedIcon}. Color Palette: ${selectedPalette}. Style: luxurious BİROYA brand design, soft studio lighting, clean completely empty blank blank center space for custom font overlay, 8k resolution`;
-
-  try {
-    const startRes = await fetch("https://api.replicate.com/v1/predictions", {
-      method: "POST",
-      headers: {
-        "Authorization": `Token ${token}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        version: "black-forest-labs/flux-1.1-pro",
-        input: { prompt: prompt, width: 1024, height: 1024 }
-      })
-    });
-
-    let prediction = await startRes.json();
-
-    if (startRes.status !== 201) {
-      return res.status(500).json({ error: prediction.detail || 'خطأ في الاتصال بـ Replicate' });
-    }
-
-    while (prediction.status !== "succeeded" && prediction.status !== "failed") {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      const checkRes = await fetch(`https://api.replicate.com/v1/predictions/${prediction.id}`, {
-        headers: { "Authorization": `Token ${token}` }
+      // Process Canvas Elements
+      const processedElements = (elements || []).map((item, index) => {
+        return {
+          id: item.id || `element-${index}`,
+          type: item.type, // 'text', 'shape', 'decor'
+          content: item.content || '',
+          font: item.font || selectedFont,
+          size: item.size || fontSize || 48,
+          position: {
+            top: `${item.top || 50}%`,
+            left: `${item.left || 50}%`
+          },
+          shapeDetails: item.type === 'shape' ? {
+            kind: item.shape, // 'circle', 'square', 'rectangle'
+            borderWidth: '3px',
+            borderColor: '#F59E0B'
+          } : null
+        };
       });
-      prediction = await checkRes.json();
-    }
 
-    if (prediction.status === "succeeded") {
-      res.status(200).json({ output: prediction.output });
-    } else {
-      res.status(500).json({ error: 'فشل التوليد، يرجى إعادة المحاولة' });
+      // Response Structure
+      const resultData = {
+        success: true,
+        timestamp: new Date().toISOString(),
+        theme: themeMode || 'dark',
+        designSummary: {
+          totalElements: processedElements.length,
+          primaryText: text || '',
+          primaryFontSize: `${fontSize || 48}px`,
+          activeFontClass: selectedFont,
+          elements: processedElements
+        },
+        message: 'تم معالجة وتوليد بيانات التصميم بنجاح'
+      };
+
+      return res.status(200).json(resultData);
+
+    } catch (error) {
+      console.error('Error generating design payload:', error);
+      return res.status(500).json({ 
+        success: false, 
+        error: 'حدث خطأ أثناء معالجة بيانات التصميم',
+        details: error.message 
+      });
     }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+  } else {
+    // GET or Fallback request
+    return res.status(200).json({
+      status: 'active',
+      service: 'BİROYA Customization & Theme Generator API',
+      supportedFontsCount: AVAILABLE_FONTS.length,
+      availableFonts: AVAILABLE_FONTS
+    });
   }
+}
+
+/**
+ * Helper function to parse SVG/Canvas configuration if exported
+ */
+export function buildCanvasSvgPayload(canvasState) {
+  const { width = 1000, height = 1000, elements = [] } = canvasState;
+  
+  let svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}">`;
+  svgContent += `<rect width="100%" height="100%" fill="#070B14"/>`;
+
+  elements.forEach(el => {
+    const posX = (el.left / 100) * width;
+    const posY = (el.top / 100) * height;
+
+    if (el.type === 'text') {
+      svgContent += `<text x="${posX}" y="${posY}" font-size="${el.size}" fill="#FCD34D" text-anchor="middle" dominant-baseline="middle">${el.content}</text>`;
+    } else if (el.type === 'shape') {
+      if (el.shape === 'circle') {
+        svgContent += `<circle cx="${posX}" cy="${posY}" r="${(el.size || 100) / 2}" stroke="#F59E0B" stroke-width="4" fill="none"/>`;
+      } else {
+        svgContent += `<rect x="${posX - (el.size/2)}" y="${posY - (el.size/2)}" width="${el.size}" height="${el.size}" stroke="#F59E0B" stroke-width="4" fill="none"/>`;
+      }
+    }
+  });
+
+  svgContent += `</svg>`;
+  return svgContent;
 }
