@@ -3,15 +3,24 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const { name, style, colors } = req.body || {};
+  const { name, subtext, category, style, colors } = req.body || {};
   const token = process.env.REPLICATE_API_TOKEN;
 
   if (!token) {
     return res.status(500).json({ error: 'مفتاح Replicate API غير معرف في Vercel' });
   }
 
-  const colorPrompt = colors ? `${colors} color palette` : 'soft pastel pink and beige colors';
-  const prompt = `A centered delicate party theme frame badge, ${style} style, featuring cute hot air balloon, floral elements, ${colorPrompt}, empty blank space in the absolute center for text, pure white background, high resolution, minimalist party decoration design, digital illustration`;
+  const stylePrompts = {
+    biroya: 'luxurious BİROYA royal brand aesthetic, deep royal blue and cream beige background, gold accents, elegant coffee and event theme',
+    watercolor: 'soft pastel watercolor style, delicate floral frame',
+    boho: 'modern boho minimalist style, organic shapes and dry plants',
+    embroidery: 'fine embroidery texture style, luxury fabric background'
+  };
+
+  const selectedStyle = stylePrompts[style] || stylePrompts.biroya;
+  const colorPalette = colors ? `${colors} palette` : 'royal blue, off-white, and gold accent';
+
+  const prompt = `A highly sophisticated centered branding frame for ${category}, ${selectedStyle}, with ${colorPalette}, clean empty blank space in the exact center for text layout, professional graphic design layout, high resolution 8k`;
 
   try {
     const startRes = await fetch("https://api.replicate.com/v1/predictions", {
@@ -43,7 +52,7 @@ export default async function handler(req, res) {
     if (prediction.status === "succeeded") {
       res.status(200).json({ output: prediction.output });
     } else {
-      res.status(500).json({ error: 'فشل الذكاء الاصطناعي في توليد الصورة' });
+      res.status(500).json({ error: 'فشل التوليد، يرجى إعادة المحاولة' });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
