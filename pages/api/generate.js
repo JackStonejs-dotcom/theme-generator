@@ -3,24 +3,37 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const { name, subtext, category, style, colors } = req.body || {};
+  const { name, subtext, category, font, shape, icon, style, colors } = req.body || {};
   const token = process.env.REPLICATE_API_TOKEN;
 
   if (!token) {
     return res.status(500).json({ error: 'مفتاح Replicate API غير معرف في Vercel' });
   }
 
-  const stylePrompts = {
-    biroya: 'luxurious BİROYA royal brand aesthetic, deep royal blue and cream beige background, gold accents, elegant coffee and event theme',
-    watercolor: 'soft pastel watercolor style, delicate floral frame',
-    boho: 'modern boho minimalist style, organic shapes and dry plants',
-    embroidery: 'fine embroidery texture style, luxury fabric background'
+  // ترجمة وتوجيه شكل الإطار للهندسة المعمارية للتصميم
+  const shapeDescriptions = {
+    circle: 'delicate circular frame badge in center',
+    arch: 'royal wedding arch frame structure with floral arrangements',
+    square: 'minimalist boho square frame',
+    hexagon: 'modern geometric hexagon center badge'
   };
 
-  const selectedStyle = stylePrompts[style] || stylePrompts.biroya;
-  const colorPalette = colors ? `${colors} palette` : 'royal blue, off-white, and gold accent';
+  // ترجمة وتوجيه العناصر الزخرفية والرموز
+  const iconDescriptions = {
+    none: '',
+    cute_animals: 'featuring adorable teddy bear and baby animals illustrations',
+    vintage_car: 'featuring a classic vintage toy car illustration',
+    luxury_ornament: 'embellished with elegant royal Islamic / Arabic golden filigree ornaments',
+    golden_rings: 'featuring delicate golden wedding rings illustration',
+    coffee_cup: 'featuring a luxury coffee cup branding element'
+  };
 
-  const prompt = `A highly sophisticated centered branding frame for ${category}, ${selectedStyle}, with ${colorPalette}, clean empty blank space in the exact center for text layout, professional graphic design layout, high resolution 8k`;
+  const selectedShape = shapeDescriptions[shape] || shapeDescriptions.arch;
+  const selectedIcon = iconDescriptions[icon] || '';
+  const selectedPalette = colors ? `${colors} color scheme` : 'royal blue, cream, and gold accent';
+
+  // بناء المحفز الذكي القوي جداً للنموذج
+  const prompt = `A centered, ultra-high-resolution branding theme template for ${category}. Structural frame: ${selectedShape}. Elements: ${selectedIcon}. Color Palette: ${selectedPalette}. Style: luxurious BİROYA brand design, soft studio lighting, clean completely empty blank blank center for text overlay, 8k render, digital art`;
 
   try {
     const startRes = await fetch("https://api.replicate.com/v1/predictions", {
@@ -52,7 +65,7 @@ export default async function handler(req, res) {
     if (prediction.status === "succeeded") {
       res.status(200).json({ output: prediction.output });
     } else {
-      res.status(500).json({ error: 'فشل التوليد، يرجى إعادة المحاولة' });
+      res.status(500).json({ error: 'فشل الذكاء الاصطناعي في معالجة طلبك' });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
