@@ -3,11 +3,13 @@ import { useState } from 'react';
 const translations = {
   ar: {
     badge: '✨ BİROYA VISION OS - LIQUID GLASS',
-    title: 'مصمم ثيمات الهوية البصرية',
-    subtitle: 'استخدم الذكاء الاصطناعي مع تحكم كامل بالخطوط والألوان والبطاقات الزجاجية',
+    title: 'تخصيص الهوية والتصميم الزجاجي',
+    subtitle: 'واجهة سائلة مستوحاة من أحدث تصميمات Apple VisionOS مع تحكم كامل',
     tabText: '📝 النص والخطوط',
-    tabStyle: '🎨 النمط والرموز',
+    tabStyle: '🎨 النمط والأبعاد',
     tabPresets: '💡 اقتراحات جاهزة',
+    darkMode: '🌙 داكن',
+    lightMode: '☀️ فاتح',
     nameLabel: 'الاسم الرئيسي:',
     namePlaceholder: 'مثال: سهيل / BiROYA Gelato',
     subtextLabel: 'العبارة الفرعية:',
@@ -16,16 +18,16 @@ const translations = {
     fontSizeLabel: 'حجم الخط:',
     fontWeightLabel: 'سمك الخط:',
     fontColorLabel: 'لون النص:',
-    categoryLabel: 'نوع المناسبة:',
-    shapeLabel: 'شكل الإطار:',
-    iconLabel: 'الرمز / الزخرفة:',
+    categoryLabel: 'المناسبة:',
+    shapeLabel: 'الإطار:',
+    iconLabel: 'الرمز:',
     colorsLabel: 'درجات ألوان الثيم:',
     presetTitle: 'اختر إلهاماً سريعاً لتعبئة الخيارات تلقائياً:',
-    generateBtn: '✨ توليد التصميم الآن',
+    generateBtn: '✨ توليد التصميم الزجاجي',
     generating: '⏳ جاري المعالجة السائلة...',
     downloadBtn: '📥 تحميل الثيم بجودة عالية',
     weights: {
-      bold: 'عريض جداً (Bold)',
+      bold: 'عريض (Bold)',
       medium: 'متوسط (Medium)',
       normal: 'عادي (Regular)'
     },
@@ -34,10 +36,10 @@ const translations = {
       wedding: '💍 زفاف وعقد قران',
       coffee: '☕ كافيه وهدية قهوة BİROYA',
       birthday: '🎂 عيد ميلاد',
-      graduation: '🎓 تخرج ومناسبات راقية'
+      graduation: '🎓 تخرج ومناسبات'
     },
     shapes: {
-      arch: 'قوس زفاف ملكي (Arch)',
+      arch: 'قوس ملكي (Arch)',
       circle: 'دائرة ناعمة (Circle)',
       square: 'مربع بوهيمي (Square)',
       hexagon: 'مسدس تجريدي (Hexagon)'
@@ -46,34 +48,36 @@ const translations = {
       none: 'بدون رمز',
       cute_animals: 'حيوانات لطيفة 🧸',
       vintage_car: 'سيارة كلاسيكية 🚗',
-      luxury_ornament: 'زخرفة عربية فاخرة ⚜️',
-      golden_rings: 'خواتم زفاف ذهبية 💍',
+      luxury_ornament: 'زخرفة فاخرة ⚜️',
+      golden_rings: 'خواتم زفاف 💍',
       coffee_cup: 'كأس قهوة BİROYA ☕'
     }
   },
   tr: {
-    badge: '✨ BİROYA VISION OS - CAM TASARIM',
-    title: 'Kurumsal Kimlik ve Tema Tasarımı',
-    subtitle: 'Yapay zeka ve özelleştirilebilir cam arayüz ile harika temalar oluşturun',
+    badge: '✨ BİROYA VISION OS - LIQUID GLASS',
+    title: 'Cam Arayüz Tema Tasarımı',
+    subtitle: 'Apple VisionOS stiline sahip akıcı cam panel ve tam kontrol',
     tabText: '📝 Metin & Yazı Tipi',
-    tabStyle: '🎨 Stil & Nesneler',
+    tabStyle: '🎨 Stil & Boyutlar',
     tabPresets: '💡 Hızlı Öneriler',
-    nameLabel: 'Ana İsim / Marka:',
+    darkMode: '🌙 Karanlık',
+    lightMode: '☀️ Aydınlık',
+    nameLabel: 'Ana İsim:',
     namePlaceholder: 'Örn: Suheil / BiROYA Gelato',
     subtextLabel: 'Alt Metin:',
-    subtextPlaceholder: 'Örn: Hoş Geldiniz / Special Edition',
-    fontLabel: 'Yazı Tipi (Font):',
-    fontSizeLabel: 'Yazı Boyutu:',
+    subtextPlaceholder: 'Örn: Hoş Geldiniz',
+    fontLabel: 'Yazı Tipi:',
+    fontSizeLabel: 'Metin Boyutu:',
     fontWeightLabel: 'Yazı Kalınlığı:',
     fontColorLabel: 'Yazı Rengi:',
-    categoryLabel: 'Etkinlik Türü:',
-    shapeLabel: 'Çerçeve Şekli:',
-    iconLabel: 'Sımge / Süsleme:',
-    colorsLabel: 'Tema Renk Paleti:',
+    categoryLabel: 'Etkinlik:',
+    shapeLabel: 'Çerçeve:',
+    iconLabel: 'Simge:',
+    colorsLabel: 'Renk Paleti:',
     presetTitle: 'Seçenekleri otomatik doldurmak için bir öneri seçin:',
-    generateBtn: '✨ Tasarımı Oluştur',
-    generating: '⏳ Cam Efekti İşleniyor...',
-    downloadBtn: '📥 Baskı Boyutunda İndir',
+    generateBtn: '✨ Cam Tasarımı Oluştur',
+    generating: '⏳ Cam İşleniyor...',
+    downloadBtn: '📥 Yüksek Kalitede İndir',
     weights: {
       bold: 'Kalın (Bold)',
       medium: 'Orta (Medium)',
@@ -82,13 +86,13 @@ const translations = {
     categories: {
       baby: '👶 Yeni Doğuş / Baby Shower',
       wedding: '💍 Düğün & Nişan',
-      coffee: '☕ Kahve & Gelato Konsepti',
+      coffee: '☕ BİROYA Kahve & Gelato',
       birthday: '🎂 Doğum Günü',
       graduation: '🎓 Mezuniyet'
     },
     shapes: {
       arch: 'Kraliyet Kemeri (Arch)',
-      circle: 'Yuvarlak Çerçeve (Circle)',
+      circle: 'Yuvarlak (Circle)',
       square: 'Kare (Square)',
       hexagon: 'Altıgen (Hexagon)'
     },
@@ -96,21 +100,23 @@ const translations = {
       none: 'Yok',
       cute_animals: 'Sevimli Hayvanlar 🧸',
       vintage_car: 'Klasik Araba 🚗',
-      luxury_ornament: 'Lüks Osmanlı Motifi ⚜️',
+      luxury_ornament: 'Lüks Motif ⚜️',
       golden_rings: 'Altın Yüzükler 💍',
       coffee_cup: 'BİROYA Kahve Bardağı ☕'
     }
   },
   en: {
     badge: '✨ BİROYA VISION OS - LIQUID GLASS',
-    title: 'Theme & Identity Creator',
-    subtitle: 'AI Powered with full glassmorphic controls for fonts, shapes & colors',
+    title: 'Glassmorphism Theme Creator',
+    subtitle: 'Inspired by Apple VisionOS UI with real glass controls and sliders',
     tabText: '📝 Text & Fonts',
-    tabStyle: '🎨 Style & Shapes',
+    tabStyle: '🎨 Style & Dimensions',
     tabPresets: '💡 Quick Presets',
+    darkMode: '🌙 Dark',
+    lightMode: '☀️ Light',
     nameLabel: 'Main Title / Name:',
     namePlaceholder: 'e.g., Suheil / BiROYA Gelato',
-    subtextLabel: 'Subtext / Tagline:',
+    subtextLabel: 'Subtext:',
     subtextPlaceholder: 'e.g., Welcome / Special Edition',
     fontLabel: 'Font Family:',
     fontSizeLabel: 'Font Size:',
@@ -153,7 +159,6 @@ const translations = {
   }
 };
 
-// قائمة الاقتراحات السريعة للزبائن
 const presetsList = [
   {
     title: '🌸 مولود بناتي ناعم',
@@ -203,7 +208,8 @@ const presetsList = [
 
 export default function Home() {
   const [lang, setLang] = useState('ar');
-  const [activeTab, setActiveTab] = useState('text'); // 'text' | 'style' | 'presets'
+  const [isDark, setIsDark] = useState(true);
+  const [activeTab, setActiveTab] = useState('text');
 
   // التخصيصات
   const [name, setName] = useState('سهيل');
@@ -301,109 +307,142 @@ export default function Home() {
     };
   };
 
-  // أسلوب الزجاج السائل المطابق للصورة (Frosted Glass Effect)
-  const visionOsGlass = {
-    background: 'rgba(255, 255, 255, 0.08)',
-    backdropFilter: 'blur(30px) saturate(200%)',
-    WebkitBackdropFilter: 'blur(30px) saturate(200%)',
-    borderRadius: '32px',
-    border: '1px solid rgba(255, 255, 255, 0.18)',
-    boxShadow: '0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)'
+  // نمط الزجاج الضبابي الحقيقي (Frosted Glass Effect)
+  const glassStyle = {
+    background: isDark ? 'rgba(30, 35, 45, 0.55)' : 'rgba(255, 255, 255, 0.65)',
+    backdropFilter: 'blur(35px) saturate(210%)',
+    WebkitBackdropFilter: 'blur(35px) saturate(210%)',
+    borderRadius: '36px',
+    border: isDark ? '1px solid rgba(255, 255, 255, 0.18)' : '1px solid rgba(255, 255, 255, 0.8)',
+    boxShadow: isDark 
+      ? '0 30px 60px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35)'
+      : '0 20px 50px rgba(0, 0, 0, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.9)',
+    color: isDark ? '#FFFFFF' : '#0F172A',
+    transition: 'all 0.4s ease'
   };
 
   const pillButton = (active) => ({
-    padding: '10px 22px',
+    padding: '8px 20px',
     borderRadius: '30px',
-    border: active ? '1px solid rgba(255,255,255,0.4)' : '1px solid rgba(255,255,255,0.08)',
-    backgroundColor: active ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.2)',
-    color: '#FFF',
-    fontSize: '14px',
+    border: active 
+      ? (isDark ? '1px solid rgba(255,255,255,0.5)' : '1px solid rgba(0,0,0,0.15)') 
+      : '1px solid transparent',
+    backgroundColor: active 
+      ? (isDark ? 'rgba(255, 255, 255, 0.28)' : '#FFFFFF') 
+      : (isDark ? 'rgba(0, 0, 0, 0.25)' : 'rgba(0, 0, 0, 0.06)'),
+    color: active ? (isDark ? '#FFF' : '#0F172A') : (isDark ? '#cbd5e1' : '#64748b'),
+    fontSize: '13px',
     fontWeight: active ? '700' : '500',
     cursor: 'pointer',
     backdropFilter: 'blur(10px)',
-    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+    boxShadow: active ? '0 4px 15px rgba(0,0,0,0.15)' : 'none',
+    transition: 'all 0.25s ease'
   });
 
   return (
     <div dir={lang === 'ar' ? 'rtl' : 'ltr'} style={{
-      backgroundImage: 'radial-gradient(circle at 50% 10%, #1e293b 0%, #0f172a 50%, #020617 100%)',
-      color: '#FFFFFF',
+      background: isDark 
+        ? 'radial-gradient(circle at 50% 15%, #2a3447 0%, #111827 50%, #030712 100%)' 
+        : 'radial-gradient(circle at 50% 15%, #f1f5f9 0%, #e2e8f0 50%, #cbd5e1 100%)',
+      color: isDark ? '#FFFFFF' : '#0F172A',
       minHeight: '100vh',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      padding: '30px 20px 80px 20px',
-      overflowX: 'hidden'
+      padding: '30px 16px 80px 16px',
+      overflowX: 'hidden',
+      transition: 'background 0.5s ease'
     }}>
-      {/* استدعاء خطوط Google العربية واللاتينية الفاخرة */}
+      {/* استدعاء خطوط Google العربية واللاتينية */}
       <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Amiri:wght@400;700&family=Cairo:wght@400;600;800&family=Changa:wght@600;800&family=Playfair+Display:ital,wght@0,600;1,600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
 
-      {/* الشريط العلوي - VisionOS Top Float Bar */}
+      {/* الشريط العلوي العام مع زر Dark / Light Mode */}
       <div style={{
-        maxWidth: '900px',
-        margin: '0 auto 35px auto',
+        maxWidth: '1050px',
+        margin: '0 auto 30px auto',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '12px 24px',
-        ...visionOsGlass
+        ...glassStyle
       }}>
-        <div style={{ fontSize: '15px', fontWeight: '800', letterSpacing: '0.5px', color: '#38bdf8' }}>
+        <div style={{ fontSize: '14px', fontWeight: '800', letterSpacing: '0.5px', color: '#38bdf8' }}>
           {t.badge}
         </div>
 
-        {/* زر تبديل اللغات (العربية / التركية / الإنجليزية) */}
-        <div style={{ display: 'flex', gap: '6px', background: 'rgba(0,0,0,0.3)', padding: '4px', borderRadius: '30px' }}>
-          {['ar', 'tr', 'en'].map((l) => (
-            <button
-              key={l}
-              onClick={() => setLang(l)}
-              style={pillButton(lang === l)}
-            >
-              {l.toUpperCase()}
-            </button>
-          ))}
+        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+          {/* زر التبديل بين الدارك مود والفاتح */}
+          <button
+            onClick={() => setIsDark(!isDark)}
+            style={{
+              padding: '8px 18px',
+              borderRadius: '30px',
+              border: isDark ? '1px solid rgba(255,255,255,0.3)' : '1px solid rgba(0,0,0,0.15)',
+              backgroundColor: isDark ? 'rgba(255, 255, 255, 0.15)' : '#FFFFFF',
+              color: isDark ? '#FFF' : '#0F172A',
+              fontSize: '13px',
+              fontWeight: '700',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              backdropFilter: 'blur(10px)'
+            }}
+          >
+            {isDark ? t.darkMode : t.lightMode}
+          </button>
+
+          {/* تبديل اللغات */}
+          <div style={{ display: 'flex', gap: '4px', background: isDark ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.06)', padding: '4px', borderRadius: '30px' }}>
+            {['ar', 'tr', 'en'].map((l) => (
+              <button
+                key={l}
+                onClick={() => setLang(l)}
+                style={pillButton(lang === l)}
+              >
+                {l.toUpperCase()}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* العنوان الرئيسي */}
-      <div style={{ textAlign: 'center', maxWidth: '650px', margin: '0 auto 30px auto' }}>
-        <h1 style={{ fontSize: '36px', fontWeight: '800', marginBottom: '10px', letterSpacing: '-0.5px' }}>
+      <div style={{ textAlign: 'center', maxWidth: '650px', margin: '0 auto 35px auto' }}>
+        <h1 style={{ fontSize: '34px', fontWeight: '800', marginBottom: '8px', letterSpacing: '-0.5px' }}>
           {t.title}
         </h1>
-        <p style={{ color: '#94a3b8', fontSize: '15px', lineHeight: '1.6' }}>
+        <p style={{ color: isDark ? '#94a3b8' : '#64748b', fontSize: '15px', lineHeight: '1.6' }}>
           {t.subtitle}
         </p>
       </div>
 
-      {/* لوحة التحكم الرئيسية المنظمة بتأثير الزجاج */}
+      {/* ثلاثية البطاقات الزجاجية المطابقة تماماً للصورة المعروضة */}
       <div style={{
-        maxWidth: '680px',
+        maxWidth: '1100px',
         margin: '0 auto 40px auto',
-        padding: '32px',
-        ...visionOsGlass
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(310px, 1fr))',
+        gap: '24px',
+        alignItems: 'start'
       }}>
-        {/* شريط التبويب السلس لمنع تشتت الزبون (Capsule Tabs) */}
-        <div style={{
-          display: 'flex',
-          justify: 'center',
-          gap: '10px',
-          marginBottom: '28px',
-          background: 'rgba(0,0,0,0.25)',
-          padding: '6px',
-          borderRadius: '40px'
-        }}>
-          <button onClick={() => setActiveTab('text')} style={pillButton(activeTab === 'text')}>{t.tabText}</button>
-          <button onClick={() => setActiveTab('style')} style={pillButton(activeTab === 'style')}>{t.tabStyle}</button>
-          <button onClick={() => setActiveTab('presets')} style={pillButton(activeTab === 'presets')}>{t.tabPresets}</button>
-        </div>
 
-        {/* التبويب الأول: النص والخطوط وألوان الخط */}
-        {activeTab === 'text' && (
-          <div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '18px' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '13px', color: '#cbd5e1', marginBottom: '6px', fontWeight: '600' }}>
-                  {t.nameLabel}
-                </label>
+        {/* 1. البطاقة الأولى (يسار): التحكم بالقوائم والنصوص */}
+        <div style={{ padding: '28px', ...glassStyle }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+            <span style={{ fontWeight: '700', fontSize: '16px' }}>Hi BİROYA</span>
+            <span style={{ fontSize: '12px', opacity: 0.7 }}>Welcome Home</span>
+          </div>
+
+          {/* شريط الأزرار الحبوبية Capsule Pills */}
+          <div style={{ display: 'flex', gap: '6px', marginBottom: '22px', background: isDark ? 'rgba(0,0,0,0.25)' : 'rgba(0,0,0,0.05)', padding: '4px', borderRadius: '30px' }}>
+            <button onClick={() => setActiveTab('text')} style={{ ...pillButton(activeTab === 'text'), flex: 1 }}>{t.tabText}</button>
+            <button onClick={() => setActiveTab('style')} style={{ ...pillButton(activeTab === 'style'), flex: 1 }}>{t.tabStyle}</button>
+            <button onClick={() => setActiveTab('presets')} style={{ ...pillButton(activeTab === 'presets'), flex: 1 }}>{t.tabPresets}</button>
+          </div>
+
+          {activeTab === 'text' && (
+            <div>
+              <div style={{ marginBottom: '14px' }}>
+                <label style={{ display: 'block', fontSize: '12px', marginBottom: '6px', fontWeight: '600' }}>{t.nameLabel}</label>
                 <input
                   type="text"
                   placeholder={t.namePlaceholder}
@@ -411,22 +450,20 @@ export default function Home() {
                   onChange={(e) => setName(e.target.value)}
                   style={{
                     width: '100%',
-                    padding: '12px 16px',
+                    padding: '12px 14px',
                     borderRadius: '16px',
-                    backgroundColor: 'rgba(0,0,0,0.3)',
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    color: '#FFF',
-                    fontSize: '15px',
+                    backgroundColor: isDark ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.8)',
+                    border: isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(0,0,0,0.1)',
+                    color: isDark ? '#FFF' : '#0F172A',
+                    fontSize: '14px',
                     outline: 'none',
                     boxSizing: 'border-box'
                   }}
                 />
               </div>
 
-              <div>
-                <label style={{ display: 'block', fontSize: '13px', color: '#cbd5e1', marginBottom: '6px', fontWeight: '600' }}>
-                  {t.subtextLabel}
-                </label>
+              <div style={{ marginBottom: '14px' }}>
+                <label style={{ display: 'block', fontSize: '12px', marginBottom: '6px', fontWeight: '600' }}>{t.subtextLabel}</label>
                 <input
                   type="text"
                   placeholder={t.subtextPlaceholder}
@@ -434,128 +471,61 @@ export default function Home() {
                   onChange={(e) => setSubtext(e.target.value)}
                   style={{
                     width: '100%',
-                    padding: '12px 16px',
+                    padding: '12px 14px',
                     borderRadius: '16px',
-                    backgroundColor: 'rgba(0,0,0,0.3)',
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    color: '#FFF',
-                    fontSize: '15px',
+                    backgroundColor: isDark ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.8)',
+                    border: isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(0,0,0,0.1)',
+                    color: isDark ? '#FFF' : '#0F172A',
+                    fontSize: '14px',
                     outline: 'none',
                     boxSizing: 'border-box'
                   }}
                 />
               </div>
-            </div>
-
-            {/* خطوط متميزة */}
-            <div style={{ marginBottom: '18px' }}>
-              <label style={{ display: 'block', fontSize: '13px', color: '#cbd5e1', marginBottom: '6px', fontWeight: '600' }}>
-                {t.fontLabel}
-              </label>
-              <select
-                value={font}
-                onChange={(e) => setFont(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '12px 16px',
-                  borderRadius: '16px',
-                  backgroundColor: '#0f172a',
-                  border: '1px solid rgba(255,255,255,0.15)',
-                  color: '#FFF',
-                  fontSize: '15px',
-                  outline: 'none',
-                  boxSizing: 'border-box'
-                }}
-              >
-                <option value="Cairo">Cairo - عصري وأنيق</option>
-                <option value="Amiri">Amiri - ملكي كلاسيكي فاخر</option>
-                <option value="Tajawal">Tajawal - انسيابي وناعم</option>
-                <option value="Almarai">Almarai - بسيط وهادئ</option>
-                <option value="Changa">Changa - بارز وبارع</option>
-                <option value="Playfair Display">Playfair - لاتيني كلاسيكي (Serif)</option>
-              </select>
-            </div>
-
-            {/* حجم الخط وسمك الخط ولون النص */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px', marginBottom: '10px' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '12px', color: '#cbd5e1', marginBottom: '6px' }}>
-                  {t.fontSizeLabel} ({fontSize}px)
-                </label>
-                <input
-                  type="range"
-                  min="30"
-                  max="90"
-                  value={fontSize}
-                  onChange={(e) => setFontSize(Number(e.target.value))}
-                  style={{ width: '100%', accentColor: '#38bdf8' }}
-                />
-              </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '12px', color: '#cbd5e1', marginBottom: '6px' }}>
-                  {t.fontWeightLabel}
-                </label>
+                <label style={{ display: 'block', fontSize: '12px', marginBottom: '6px', fontWeight: '600' }}>{t.fontLabel}</label>
                 <select
-                  value={fontWeight}
-                  onChange={(e) => setFontWeight(e.target.value)}
+                  value={font}
+                  onChange={(e) => setFont(e.target.value)}
                   style={{
                     width: '100%',
-                    padding: '8px',
-                    borderRadius: '12px',
-                    backgroundColor: '#0f172a',
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    color: '#FFF',
-                    fontSize: '13px'
+                    padding: '12px 14px',
+                    borderRadius: '16px',
+                    backgroundColor: isDark ? '#0f172a' : '#FFFFFF',
+                    border: isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(0,0,0,0.1)',
+                    color: isDark ? '#FFF' : '#0F172A',
+                    fontSize: '14px',
+                    outline: 'none',
+                    boxSizing: 'border-box'
                   }}
                 >
-                  <option value="bold">{t.weights.bold}</option>
-                  <option value="medium">{t.weights.medium}</option>
-                  <option value="normal">{t.weights.normal}</option>
+                  <option value="Cairo">Cairo - عصري وأنيق</option>
+                  <option value="Amiri">Amiri - ملكي كلاسيكي فاخر</option>
+                  <option value="Tajawal">Tajawal - انسيابي وناعم</option>
+                  <option value="Almarai">Almarai - بسيط وهادئ</option>
+                  <option value="Changa">Changa - بارز وبارع</option>
+                  <option value="Playfair Display">Playfair - لاتيني (Serif)</option>
                 </select>
               </div>
-
-              <div>
-                <label style={{ display: 'block', fontSize: '12px', color: '#cbd5e1', marginBottom: '6px' }}>
-                  {t.fontColorLabel}
-                </label>
-                <input
-                  type="color"
-                  value={fontColor}
-                  onChange={(e) => setFontColor(e.target.value)}
-                  style={{
-                    width: '100%',
-                    height: '38px',
-                    borderRadius: '12px',
-                    border: 'none',
-                    cursor: 'pointer',
-                    backgroundColor: 'transparent'
-                  }}
-                />
-              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* التبويب الثاني: النمط والإطارات والرموز */}
-        {activeTab === 'style' && (
-          <div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '18px' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '13px', color: '#cbd5e1', marginBottom: '6px', fontWeight: '600' }}>
-                  {t.categoryLabel}
-                </label>
+          {activeTab === 'style' && (
+            <div>
+              <div style={{ marginBottom: '14px' }}>
+                <label style={{ display: 'block', fontSize: '12px', marginBottom: '6px', fontWeight: '600' }}>{t.categoryLabel}</label>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                   style={{
                     width: '100%',
-                    padding: '12px 16px',
-                    borderRadius: '16px',
-                    backgroundColor: '#0f172a',
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    color: '#FFF',
-                    fontSize: '14px'
+                    padding: '10px 14px',
+                    borderRadius: '14px',
+                    backgroundColor: isDark ? '#0f172a' : '#FFF',
+                    border: isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(0,0,0,0.1)',
+                    color: isDark ? '#FFF' : '#0F172A',
+                    fontSize: '13px'
                   }}
                 >
                   {Object.keys(t.categories).map((k) => (
@@ -564,21 +534,19 @@ export default function Home() {
                 </select>
               </div>
 
-              <div>
-                <label style={{ display: 'block', fontSize: '13px', color: '#cbd5e1', marginBottom: '6px', fontWeight: '600' }}>
-                  {t.shapeLabel}
-                </label>
+              <div style={{ marginBottom: '14px' }}>
+                <label style={{ display: 'block', fontSize: '12px', marginBottom: '6px', fontWeight: '600' }}>{t.shapeLabel}</label>
                 <select
                   value={shape}
                   onChange={(e) => setShape(e.target.value)}
                   style={{
                     width: '100%',
-                    padding: '12px 16px',
-                    borderRadius: '16px',
-                    backgroundColor: '#0f172a',
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    color: '#FFF',
-                    fontSize: '14px'
+                    padding: '10px 14px',
+                    borderRadius: '14px',
+                    backgroundColor: isDark ? '#0f172a' : '#FFF',
+                    border: isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(0,0,0,0.1)',
+                    color: isDark ? '#FFF' : '#0F172A',
+                    fontSize: '13px'
                   }}
                 >
                   {Object.keys(t.shapes).map((sk) => (
@@ -586,24 +554,20 @@ export default function Home() {
                   ))}
                 </select>
               </div>
-            </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '18px' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '13px', color: '#cbd5e1', marginBottom: '6px', fontWeight: '600' }}>
-                  {t.iconLabel}
-                </label>
+                <label style={{ display: 'block', fontSize: '12px', marginBottom: '6px', fontWeight: '600' }}>{t.iconLabel}</label>
                 <select
                   value={icon}
                   onChange={(e) => setIcon(e.target.value)}
                   style={{
                     width: '100%',
-                    padding: '12px 16px',
-                    borderRadius: '16px',
-                    backgroundColor: '#0f172a',
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    color: '#FFF',
-                    fontSize: '14px'
+                    padding: '10px 14px',
+                    borderRadius: '14px',
+                    backgroundColor: isDark ? '#0f172a' : '#FFF',
+                    border: isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(0,0,0,0.1)',
+                    color: isDark ? '#FFF' : '#0F172A',
+                    fontSize: '13px'
                   }}
                 >
                   {Object.keys(t.icons).map((ik) => (
@@ -611,100 +575,201 @@ export default function Home() {
                   ))}
                 </select>
               </div>
+            </div>
+          )}
 
-              <div>
-                <label style={{ display: 'block', fontSize: '13px', color: '#cbd5e1', marginBottom: '6px', fontWeight: '600' }}>
-                  {t.colorsLabel}
-                </label>
-                <input
-                  type="text"
-                  value={colors}
-                  onChange={(e) => setColors(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    borderRadius: '16px',
-                    backgroundColor: 'rgba(0,0,0,0.3)',
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    color: '#FFF',
-                    fontSize: '13px'
-                  }}
-                />
+          {activeTab === 'presets' && (
+            <div>
+              <p style={{ fontSize: '12px', marginBottom: '12px', opacity: 0.8 }}>{t.presetTitle}</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                {presetsList.map((preset, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => applyPreset(preset)}
+                    style={{
+                      padding: '10px 14px',
+                      borderRadius: '14px',
+                      backgroundColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.8)',
+                      border: isDark ? '1px solid rgba(255,255,255,0.12)' : '1px solid rgba(0,0,0,0.08)',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <div style={{ fontWeight: '700', fontSize: '13px', color: '#38bdf8' }}>{preset.title}</div>
+                    <div style={{ fontSize: '11px', opacity: 0.7 }}>{preset.name} - {preset.colors}</div>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
-        {/* التبويب الثالث: القوالب والاقتراحات السريعة */}
-        {activeTab === 'presets' && (
-          <div>
-            <p style={{ fontSize: '13px', color: '#cbd5e1', marginBottom: '16px' }}>
-              {t.presetTitle}
-            </p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-              {presetsList.map((preset, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => applyPreset(preset)}
-                  style={{
-                    padding: '14px',
-                    borderRadius: '20px',
-                    backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                    border: '1px solid rgba(255, 255, 255, 0.15)',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s',
-                    boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
-                  }}
-                >
-                  <div style={{ fontWeight: '700', fontSize: '14px', marginBottom: '4px', color: '#38bdf8' }}>
-                    {preset.title}
-                  </div>
-                  <div style={{ fontSize: '12px', color: '#94a3b8' }}>
-                    {preset.name} - {preset.colors}
-                  </div>
-                </div>
-              ))}
+        {/* 2. البطاقة الثانية (الوسط): القرص الدائري المزدوج Glass Circular Knob Controller (مطابق للحرارة بالصورة) */}
+        <div style={{ padding: '28px', textAlign: 'center', ...glassStyle }}>
+          <div style={{ fontSize: '15px', fontWeight: '700', marginBottom: '20px' }}>Font & Dimension Control</div>
+
+          {/* القرص الزجاجي الدائري التفاعلي */}
+          <div style={{
+            width: '210px',
+            height: '210px',
+            margin: '0 auto 24px auto',
+            borderRadius: '50%',
+            background: isDark 
+              ? 'radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0.4) 100%)' 
+              : 'radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(226,232,240,0.8) 100%)',
+            border: isDark ? '8px solid rgba(255, 255, 255, 0.12)' : '8px solid rgba(255, 255, 255, 0.9)',
+            boxShadow: '0 15px 35px rgba(0,0,0,0.2)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'relative'
+          }}>
+            <span style={{ fontSize: '12px', opacity: 0.6 }}>Font Size</span>
+            <span style={{ fontSize: '46px', fontWeight: '800', lineHeight: '1' }}>{fontSize}</span>
+            <span style={{ fontSize: '12px', color: '#38bdf8', marginTop: '4px' }}>px</span>
+
+            {/* أزرار زيادة ونقصان الحجم الدائرية داخل القرص */}
+            <div style={{ display: 'flex', gap: '30px', marginTop: '10px' }}>
+              <button
+                onClick={() => setFontSize(Math.max(30, fontSize - 2))}
+                style={{
+                  width: '30px', height: '30px', borderRadius: '50%', border: 'none',
+                  backgroundColor: isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.1)',
+                  color: isDark ? '#FFF' : '#0F172A', fontWeight: 'bold', cursor: 'pointer'
+                }}
+              >-</button>
+              <button
+                onClick={() => setFontSize(Math.min(90, fontSize + 2))}
+                style={{
+                  width: '30px', height: '30px', borderRadius: '50%', border: 'none',
+                  backgroundColor: isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.1)',
+                  color: isDark ? '#FFF' : '#0F172A', fontWeight: 'bold', cursor: 'pointer'
+                }}
+              >+</button>
             </div>
           </div>
-        )}
 
-        {/* زر التوليد الزجاجي الفاخر */}
-        <button
-          onClick={generate}
-          disabled={loading}
-          style={{
-            width: '100%',
-            marginTop: '24px',
-            padding: '16px',
-            borderRadius: '24px',
-            border: 'none',
-            background: loading 
-              ? '#334155' 
-              : 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)',
-            color: '#FFF',
-            fontSize: '16px',
-            fontWeight: '700',
-            cursor: loading ? 'not-allowed' : 'pointer',
-            boxShadow: '0 10px 30px rgba(2, 132, 199, 0.4)'
-          }}
-        >
-          {loading ? t.generating : t.generateBtn}
-        </button>
-
-        {errorMsg && (
-          <div style={{ marginTop: '16px', padding: '12px', borderRadius: '12px', backgroundColor: 'rgba(239, 68, 68, 0.2)', color: '#F87171', fontSize: '13px', textAlign: 'center' }}>
-            {errorMsg}
+          {/* مفتاح التبديل السفلي (Schedule Toggle) */}
+          <div style={{
+            display: 'flex',
+            justify: 'space-between',
+            alignItems: 'center',
+            padding: '12px 18px',
+            borderRadius: '20px',
+            backgroundColor: isDark ? 'rgba(0,0,0,0.25)' : 'rgba(0,0,0,0.04)',
+            border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.06)'
+          }}>
+            <span style={{ fontSize: '13px', fontWeight: '600' }}>{t.fontWeightLabel}</span>
+            <select
+              value={fontWeight}
+              onChange={(e) => setFontWeight(e.target.value)}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '12px',
+                backgroundColor: isDark ? '#0f172a' : '#FFF',
+                border: 'none',
+                color: isDark ? '#FFF' : '#0F172A',
+                fontSize: '12px',
+                fontWeight: '600'
+              }}
+            >
+              <option value="bold">{t.weights.bold}</option>
+              <option value="medium">{t.weights.medium}</option>
+              <option value="normal">{t.weights.normal}</option>
+            </select>
           </div>
-        )}
+        </div>
+
+        {/* 3. البطاقة الثالثة (يمين): التحكم بالألوان وطيف الألوان السائل Spectrum Slider (مطابق لـ Smart Light بالصورة) */}
+        <div style={{ padding: '28px', ...glassStyle }}>
+          <div style={{ fontSize: '15px', fontWeight: '700', marginBottom: '18px' }}>Smart Color & Palette</div>
+
+          {/* شريط ألوان الطيف السائل (Color Spectrum Bar) المطابق للصورة */}
+          <div style={{ marginBottom: '22px' }}>
+            <label style={{ display: 'block', fontSize: '12px', marginBottom: '8px', opacity: 0.8 }}>
+              {t.fontColorLabel}
+            </label>
+            <div style={{
+              height: '14px',
+              borderRadius: '20px',
+              background: 'linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)',
+              marginBottom: '10px',
+              boxShadow: '0 4px 10px rgba(0,0,0,0.2)'
+            }} />
+            <input
+              type="color"
+              value={fontColor}
+              onChange={(e) => setFontColor(e.target.value)}
+              style={{
+                width: '100%',
+                height: '40px',
+                borderRadius: '16px',
+                border: 'none',
+                cursor: 'pointer',
+                backgroundColor: 'transparent'
+              }}
+            />
+          </div>
+
+          <div style={{ marginBottom: '22px' }}>
+            <label style={{ display: 'block', fontSize: '12px', marginBottom: '6px', opacity: 0.8 }}>
+              {t.colorsLabel}
+            </label>
+            <input
+              type="text"
+              value={colors}
+              onChange={(e) => setColors(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '12px 14px',
+                borderRadius: '16px',
+                backgroundColor: isDark ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.8)',
+                border: isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(0,0,0,0.1)',
+                color: isDark ? '#FFF' : '#0F172A',
+                fontSize: '13px',
+                boxSizing: 'border-box'
+              }}
+            />
+          </div>
+
+          {/* زر التوليد السائل الرئيسي */}
+          <button
+            onClick={generate}
+            disabled={loading}
+            style={{
+              width: '100%',
+              padding: '16px',
+              borderRadius: '24px',
+              border: 'none',
+              background: loading
+                ? '#334155'
+                : 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)',
+              color: '#FFF',
+              fontSize: '15px',
+              fontWeight: '700',
+              cursor: loading ? 'not-allowed' : 'pointer',
+              boxShadow: '0 10px 30px rgba(2, 132, 199, 0.4)'
+            }}
+          >
+            {loading ? t.generating : t.generateBtn}
+          </button>
+        </div>
+
       </div>
 
-      {/* بطاقة النتيجة بالخط المخصص بالحجم واللون المطلوب */}
+      {errorMsg && (
+        <div style={{ maxWidth: '600px', margin: '0 auto 20px auto', padding: '12px', borderRadius: '12px', backgroundColor: 'rgba(239, 68, 68, 0.2)', color: '#F87171', fontSize: '13px', textAlign: 'center' }}>
+          {errorMsg}
+        </div>
+      )}
+
+      {/* بطاقة المعاينة النهائية والتحميل */}
       {image && (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '20px' }}>
           <div style={{
             position: 'relative',
             padding: '16px',
-            ...visionOsGlass,
+            ...glassStyle,
             maxWidth: '460px',
             width: '100%'
           }}>
@@ -712,7 +777,7 @@ export default function Home() {
               <img src={image} alt="BİROYA Result" style={{ width: '100%', display: 'block' }} />
             </div>
 
-            {/* معاينة النص بالخط واللون الحقيقي */}
+            {/* طبقة النص والتنسيقات */}
             <div style={{
               position: 'absolute',
               top: '50%',
@@ -727,7 +792,7 @@ export default function Home() {
                 fontSize: `${Math.round(fontSize * 0.65)}px`,
                 fontWeight: fontWeight === 'bold' ? '800' : (fontWeight === 'medium' ? '600' : '400'),
                 fontFamily: `"${font}", sans-serif`,
-                textShadow: '0 0 18px rgba(0,0,0,0.8)'
+                textShadow: '0 0 18px rgba(0,0,0,0.85)'
               }}>
                 {name}
               </div>
@@ -739,7 +804,7 @@ export default function Home() {
                   marginTop: '6px',
                   fontFamily: `"${font}", sans-serif`,
                   opacity: 0.9,
-                  textShadow: '0 0 12px rgba(0,0,0,0.8)'
+                  textShadow: '0 0 12px rgba(0,0,0,0.85)'
                 }}>
                   {subtext}
                 </div>
