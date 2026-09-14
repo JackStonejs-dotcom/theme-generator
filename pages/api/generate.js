@@ -3,15 +3,20 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const { name, style, colors, elements } = req.body || {};
+  const { name, style } = req.body || {};
+  const token = process.env.REPLICATE_API_TOKEN;
 
-  const prompt = `Arabic ${style} event theme for ${name}, ${elements}, ${colors} colors, minimal, printable, white background, high resolution`;
+  if (!token) {
+    return res.status(500).json({ error: 'مفتاح Replicate API غير معرف في Vercel' });
+  }
+
+  const prompt = `Arabic ${style} event theme for ${name}, flowers, pastel colors, minimal, printable, white background, high resolution`;
 
   try {
-    const response = await fetch("https://api.replicate.com/v1/predictions", {
+    const startRes = await fetch("https://api.replicate.com/v1/predictions", {
       method: "POST",
       headers: {
-        "Authorization": `Token ${process.env.REPLICATE_API_TOKEN}`,
+        "Authorization": `Token ${token}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -20,8 +25,25 @@ export default async function handler(req, res) {
       })
     });
 
-    const prediction = await response.json();
-    res.status(200).json(prediction);
+    let prediction = await startRes.json();
+
+    if (startRes.status !== 201) {
+      return res.status(500).json({ error: prediction.detail || 'خطأ في الاتصال بـ Replicate' });
+    }
+
+    while (prediction.status !== "succeeded" && prediction.status !== "failed") {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const checkRes = await fetch(`https://api.replicate.com/v1/predictions/${prediction.id}`, {
+        headers: { "Authorization": `Token ${token}` }
+      });
+      prediction = await checkRes.json();
+    }
+
+    if (prediction.status === "succeeded") {
+      res.status(200).json({ output: prediction.output });
+    } else {
+      res.status(500).json({ error: 'فشل الذكاء الاصطناعي في توليد الصورة' });
+    }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
